@@ -1,0 +1,10 @@
+{
+  "name": "deepmarket-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-contained opaque-box Playwright E2E and visual audit suite for DeepMarket",
+  "scripts": {
+    "e2e": "node ./run.mjs"
+  }
+}

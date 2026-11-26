@@ -1,0 +1,597 @@
+.water-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: clamp(276px, 31vw, 420px);
+  border-bottom: 1px solid var(--line-strong);
+  background: var(--surface-inset);
+}
+
+.water-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--surface-inset);
+}
+
+.water-scene > canvas {
+  position: absolute;
+  top: var(--scene-top, 0px);
+  left: var(--scene-left, 0px);
+  width: var(--scene-width, 100%);
+  height: var(--scene-height, 100%);
+  max-width: none;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.water-render-note {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: rgba(9, 22, 29, 0.92);
+  color: var(--text);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.water-location {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+  max-width: calc(100% - 28px);
+  padding: 10px 14px;
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: rgba(9, 22, 29, 0.9);
+  box-shadow: 0 8px 20px rgba(2, 8, 12, 0.45);
+  color: var(--text);
+  pointer-events: auto;
+}
+
+.water-location-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.water-location h2 {
+  margin: 0;
+  font-size: clamp(20px, 2.3vw, 28px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.water-location-stats {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-family: var(--mono);
+}
+
+.water-chart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 30px;
+  margin-top: 2px;
+  padding: 4px 10px;
+  border: 1px solid color-mix(in srgb, var(--cyan) 42%, var(--line-strong));
+  border-radius: 7px;
+  background: rgba(19, 42, 52, 0.92);
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 650;
+  transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+
+.water-chart-link:hover {
+  border-color: var(--accent);
+  background: #173743;
+  color: var(--accent);
+}
+
+.water-condition {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(9, 22, 29, 0.9);
+  color: var(--text);
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.water-condition > span:first-child {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.water-condition[data-rough='true'] > span:first-child {
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
+}
+
+.water-feedback {
+  --marker-width: 64px;
+  --float-clearance: 22px;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.water-feedback-pointer {
+  position: absolute;
+  top: max(68px, calc(var(--float-y, 65%) - var(--float-clearance)));
+  left: clamp(20px, var(--float-x, 65%), calc(100% - 20px));
+  width: 2px;
+  height: 14px;
+  background: var(--gold);
+}
+
+.water-feedback-card {
+  position: absolute;
+  top: max(68px, calc(var(--float-y, 65%) - var(--float-clearance)));
+  left: clamp(var(--marker-width), var(--float-x, 65%), calc(100% - var(--marker-width)));
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: max-content;
+  max-width: min(210px, 68%);
+  padding: 6px 10px;
+  transform: translate(-50%, -100%);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: rgba(9, 22, 29, 0.92);
+  box-shadow: 0 6px 18px rgba(2, 8, 12, 0.55);
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.25;
+  transition: border-color 140ms ease, background-color 140ms ease;
+}
+
+.water-feedback-card[data-specimen='true'] {
+  --marker-width: 108px;
+}
+
+.water-feedback-card[data-tension='warning'],
+.water-feedback-card[data-kind='bite'] {
+  border-color: var(--gold);
+}
+
+.water-feedback-card[data-kind='catch'] {
+  border-color: var(--accent);
+  background: #10322e;
+  color: #e6fff8;
+}
+
+.water-feedback-card[data-kind='legendary'] {
+  border-color: var(--gold);
+  background: #2f2414;
+  color: #fff2cf;
+}
+
+.water-feedback-card[data-tension='critical'],
+.water-feedback-card[data-kind='escape'] {
+  border-color: var(--danger);
+  background: #33191e;
+  color: #ffe7e4;
+}
+
+.water-feedback-card > svg {
+  flex: 0 0 auto;
+}
+
+.water-feedback-card > span {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.water-feedback-card strong {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.water-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Native <dialog> SeaChartModal */
+.water-dialog {
+  margin: auto;
+  padding: 0;
+  width: min(980px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 24px 64px rgba(2, 8, 12, 0.72);
+}
+
+.water-dialog::backdrop {
+  background: rgba(4, 11, 15, 0.8);
+}
+
+.water-dialog-body {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.water-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.water-dialog-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.water-dialog-title svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.water-dialog-title h2 {
+  margin: 2px 0 0;
+  font-size: 18px;
+}
+
+.water-dialog-close {
+  flex-shrink: 0;
+}
+
+.water-atlas-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.9fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.water-chart {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 568 / 280;
+  min-height: 240px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-inset);
+}
+
+.water-chart > canvas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.water-chart-stop {
+  --station: var(--accent);
+  position: absolute;
+  z-index: 1;
+  left: var(--map-x);
+  top: var(--map-y);
+  display: grid;
+  gap: 1px;
+  min-width: 62px;
+  padding: 5px 8px;
+  transform: translate(-50%, calc(-100% - 10px));
+  border: 1px solid var(--line-strong);
+  border-top: 2px solid var(--station);
+  border-radius: 7px;
+  background: rgba(9, 22, 29, 0.94);
+  color: var(--text);
+  text-align: left;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(2, 8, 12, 0.55);
+}
+
+.water-chart-stop::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 5px);
+  bottom: -14px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--station);
+  border-radius: 50%;
+  background: var(--surface-inset);
+}
+
+.water-chart-stop strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.water-chart-stop small {
+  color: var(--muted);
+  font-size: 10px;
+  font-family: var(--mono);
+}
+
+.water-chart-stop[data-current='true'] {
+  --station: var(--gold);
+  border-color: var(--gold);
+  background: #1a2d33;
+}
+
+.water-chart-stop[data-current='true']::after {
+  background: var(--gold);
+}
+
+.water-chart-stop[aria-pressed='true'] {
+  z-index: 2;
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.water-chart-key {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.water-chart-key > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(9, 22, 29, 0.92);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.water-chart-key > span::before {
+  content: '';
+  width: 14px;
+  border-top: 2px solid var(--accent);
+}
+
+.water-chart-key > span[data-route='active']::before {
+  border-top-color: var(--gold);
+}
+
+.water-atlas-sheet {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line-strong);
+  border-top: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface-raised);
+}
+
+.water-atlas-sheet header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.water-atlas-sheet header h3 {
+  margin: 2px 0 0;
+  font-size: 20px;
+}
+
+.water-atlas-tier {
+  display: inline-block;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+
+.water-atlas-status {
+  padding: 3px 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.water-atlas-status[data-current='true'] {
+  border-color: color-mix(in srgb, var(--gold) 50%, var(--line));
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+
+.water-atlas-condition {
+  margin: 0;
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.water-atlas-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.water-atlas-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.water-atlas-metrics > div {
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-inset);
+}
+
+.water-atlas-metrics dt {
+  color: var(--faint);
+  font-size: 10px;
+}
+
+.water-atlas-metrics dd {
+  margin: 2px 0 0;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.water-atlas-group {
+  display: grid;
+  gap: 6px;
+}
+
+.water-atlas-group h4 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.water-atlas-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.water-atlas-chip {
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-inset);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.water-atlas-chip--species {
+  border-color: color-mix(in srgb, var(--cyan) 35%, var(--line));
+  color: var(--cyan);
+}
+
+.water-atlas-actions {
+  display: grid;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+}
+
+.water-atlas-actions .button {
+  width: 100%;
+}
+
+.water-atlas-hint {
+  color: var(--gold);
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .water-atlas-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .water-stage {
+    height: clamp(248px, 60vw, 340px);
+  }
+
+  .water-location {
+    top: 10px;
+    left: 10px;
+    padding: 8px 10px;
+    max-width: calc(100% - 20px);
+  }
+
+  .water-location h2 {
+    font-size: 18px;
+  }
+
+  .water-condition {
+    left: 10px;
+    bottom: 10px;
+    font-size: 10px;
+  }
+
+  .water-dialog-body {
+    padding: 12px;
+  }
+
+  .water-chart {
+    min-height: 210px;
+  }
+
+  .water-chart-stop {
+    min-width: 48px;
+    padding: 4px 5px;
+  }
+
+  .water-chart-stop strong {
+    font-size: 11px;
+  }
+
+  .water-chart-stop small {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water-feedback-card,
+  .water-chart-link {
+    transition: none;
+  }
+}

@@ -1,0 +1,12 @@
+$RootDir = Split-Path -Parent $PSScriptRoot
+$GoBin = Join-Path $RootDir ".tools\go\bin"
+$PgBin = Join-Path $RootDir ".tools\pgsql\bin"
+$env:PATH = "$GoBin;$PgBin;$env:PATH"
+$env:GOPATH = Join-Path $RootDir ".tools\gopath"
+$env:GOCACHE = Join-Path $RootDir ".tools\gocache"
+$env:GOMODCACHE = Join-Path $RootDir ".tools\gomodcache"
+$env:PGHOST = "127.0.0.1"
+$env:PGPORT = "55432"
+$env:PGUSER = "postgres"
+$env:PGDATABASE = "deepmarket"
+$env:DEEPMARKET_DATABASE_URL = "postgres://postgres@127.0.0.1:55432/deepmarket?sslmode=disable"

@@ -1,0 +1,1140 @@
+.economy-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.economy-heading,
+.economy-panel-heading,
+.economy-panel-footer,
+.guild-supply-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.economy-heading {
+  flex-wrap: wrap;
+}
+
+.economy-heading h1,
+.economy-panel-heading h2 {
+  margin: 0;
+}
+
+.economy-heading-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.economy-panel-heading,
+.economy-panel-footer {
+  padding: 15px 20px;
+  flex-wrap: wrap;
+}
+
+.economy-panel-heading h2,
+.economy-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.economy-panel-heading h2 {
+  font-size: 1rem;
+}
+
+.economy-panel-heading h2 svg {
+  color: var(--accent);
+}
+
+.economy-meta {
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.economy-meta--accent {
+  color: var(--accent);
+}
+
+.economy-surface.panel {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.economy-table-wrap {
+  overflow-x: auto;
+}
+
+.economy-table-wrap:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -3px;
+}
+
+.economy-table {
+  width: 100%;
+  min-width: 605px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.economy-table th,
+.economy-table td {
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+}
+
+.economy-table :is(th, td):first-child {
+  padding-left: 20px;
+}
+
+.economy-table :is(th, td):last-child {
+  padding-right: 20px;
+}
+
+.economy-table thead th {
+  background: var(--surface-raised);
+  color: var(--muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.economy-table tbody tr.is-selected {
+  background: var(--accent-soft);
+}
+
+.economy-table input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+  accent-color: var(--accent);
+}
+
+.economy-table small,
+.economy-muted {
+  color: var(--muted);
+}
+
+.economy-muted {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.economy-panel-footer {
+  border-top: 1px solid var(--line);
+}
+
+.economy-tags,
+.economy-actions,
+.fx-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.economy-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.economy-empty {
+  min-height: 132px;
+  margin: 0;
+  padding: 22px 18px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+}
+
+.economy-empty p,
+.guild-supply-list p {
+  margin: 0;
+}
+
+.economy-message {
+  margin: 0 20px 16px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-raised);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.economy-message--error {
+  border-color: color-mix(in srgb, var(--danger) 50%, var(--line));
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* ---- Guild Panel ---- */
+
+.guild-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  padding: 10px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-inset);
+}
+
+.guild-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.guild-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 30px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+
+.guild-filter-pill small {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+}
+
+.guild-filter-pill:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.guild-filter-pill[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.guild-filter-pill[aria-pressed='true'] small {
+  color: var(--accent);
+}
+
+.guild-toolbar-selects {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.guild-select-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.guild-select-label {
+  white-space: nowrap;
+}
+
+.guild-select-wrap select {
+  min-height: 26px;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.guild-select-wrap select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.guild-table th[scope='row'] {
+  white-space: nowrap;
+}
+
+.guild-tier {
+  margin-inline-start: 7px;
+  vertical-align: middle;
+}
+
+.guild-tier--rare {
+  border-color: color-mix(in srgb, var(--cyan) 38%, var(--line));
+  color: var(--cyan);
+}
+
+.guild-tier--epic {
+  border-color: color-mix(in srgb, var(--violet) 42%, var(--line));
+  color: var(--violet);
+}
+
+.guild-tier--legendary {
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+  color: var(--gold);
+}
+
+.guild-trait-active {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.guild-trait-active small {
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.guild-quote {
+  display: grid;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.guild-quote strong {
+  color: var(--gold);
+}
+
+.guild-selection-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.guild-hidden-selection {
+  color: var(--cyan);
+  font-size: 0.78rem;
+}
+
+.guild-receipt {
+  display: grid;
+  gap: 10px;
+}
+
+.guild-receipt .economy-actions span {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--gold);
+}
+
+.guild-flow-row {
+  display: grid;
+  gap: 7px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.guild-flow-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  background: var(--surface-inset);
+  color: var(--text);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 140ms ease, background-color 140ms ease;
+}
+
+.guild-flow-chip:hover:not(:disabled) {
+  border-color: var(--cyan);
+  background: var(--cyan-soft);
+}
+
+.guild-flow-chip small {
+  color: var(--muted);
+}
+
+.guild-flow-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.guild-supplies {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.guild-supply-list {
+  display: grid;
+  gap: 12px;
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.guild-material-card {
+  display: grid;
+  gap: 5px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-inset);
+}
+
+.guild-material-tier--common {
+  color: var(--muted);
+}
+
+.guild-material-tier--rare {
+  border-color: color-mix(in srgb, var(--cyan) 38%, var(--line));
+  color: var(--cyan);
+}
+
+.guild-material-tier--epic {
+  border-color: color-mix(in srgb, var(--violet) 42%, var(--line));
+  color: var(--violet);
+}
+
+.guild-material-tier--legendary {
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+  color: var(--gold);
+}
+
+.guild-material-qty {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.guild-material-desc {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.guild-rod {
+  display: grid;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-inset);
+}
+
+.guild-rod-enhance {
+  border-color: color-mix(in srgb, var(--cyan) 38%, var(--line));
+  color: var(--cyan);
+}
+
+.guild-rod-equipped {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.guild-durability-text {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+
+.guild-rod progress {
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  accent-color: var(--accent);
+}
+
+.guild-rod progress.is-low {
+  accent-color: var(--danger);
+}
+
+.guild-affix-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 2px;
+}
+
+.guild-affix-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.guild-affix-chip svg {
+  color: var(--gold);
+}
+
+.guild-affix-chip b {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+/* ---- FX Terminal & KPI Strip ---- */
+
+.fx-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.fx-kpi-card {
+  display: grid;
+  gap: 5px;
+  padding: 14px 16px;
+}
+
+.fx-kpi-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.fx-kpi-label svg {
+  color: var(--cyan);
+}
+
+.fx-kpi-value {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.fx-watchlist th,
+.fx-watchlist td {
+  white-space: nowrap;
+}
+
+.fx-symbol {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 4px 7px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.fx-symbol small,
+.fx-symbol-code {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.fx-symbol[aria-pressed='true'],
+.fx-symbol:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--surface-raised);
+  color: var(--accent);
+}
+
+.fx-positive {
+  color: var(--accent);
+}
+
+.fx-negative {
+  color: var(--danger);
+}
+
+.fx-imbalance {
+  min-width: 108px;
+  display: grid;
+  gap: 4px;
+}
+
+.fx-imbalance-track {
+  position: relative;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--surface-raised);
+}
+
+.fx-imbalance-track::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: var(--muted);
+}
+
+.fx-imbalance-track span {
+  position: absolute;
+  height: 100%;
+  background: var(--accent);
+}
+
+.fx-imbalance-track .is-negative {
+  background: var(--danger);
+}
+
+.fx-pos-cell {
+  display: grid;
+  gap: 2px;
+}
+
+.fx-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(276px, 0.4fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.fx-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 31px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+
+.fx-option:hover:not(:disabled),
+.fx-option[aria-pressed='true'] {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.fx-option[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.fx-symbol:disabled,
+.fx-option:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---- FX Candlestick Chart ---- */
+
+.fx-chart-head {
+  align-items: flex-start;
+}
+
+.fx-chart-head-title {
+  display: grid;
+  gap: 5px;
+}
+
+.fx-chart-head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-chart-mid {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.fx-chart-shell {
+  border-top: 1px solid var(--line);
+  background: var(--surface-inset);
+}
+
+.fx-chart-shell.is-loading .fx-k {
+  opacity: 0.72;
+}
+
+.fx-chart-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.fx-chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.fx-chart-btn {
+  min-width: 32px;
+  min-height: 32px;
+  padding: 4px 7px;
+}
+
+.fx-chart-toolbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fx-k-loading-badge {
+  padding: 2px 7px;
+  border: 1px solid color-mix(in srgb, var(--cyan) 40%, var(--line));
+  border-radius: 999px;
+  background: var(--cyan-soft);
+  color: var(--cyan);
+  font-size: 0.72rem;
+}
+
+.fx-chart-hint {
+  color: var(--faint);
+  font-size: 0.72rem;
+  font-family: var(--mono);
+}
+
+.fx-k-plot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 8px;
+  padding: 10px 12px 6px;
+  background: var(--surface-inset);
+}
+
+.fx-k-wrap {
+  position: relative;
+  min-width: 0;
+  touch-action: none;
+  cursor: grab;
+  border-radius: 6px;
+}
+
+.fx-k-wrap.is-dragging {
+  cursor: grabbing;
+}
+
+.fx-k-wrap:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.fx-k {
+  display: block;
+  width: 100%;
+  height: clamp(230px, 31vw, 330px);
+  overflow: visible;
+}
+
+.fx-k-grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.fx-k-inspection {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.fx-k-candle .fx-k-wick {
+  stroke: currentColor;
+  stroke-width: 1.25;
+}
+
+.fx-k-candle .fx-k-body {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1;
+}
+
+.fx-k-candle .fx-k-vol {
+  fill: currentColor;
+  opacity: 0.34;
+}
+
+.fx-k-candle.is-up {
+  color: var(--accent);
+}
+
+.fx-k-candle.is-down {
+  color: var(--danger);
+}
+
+.fx-k-candle.is-flat {
+  color: var(--muted);
+}
+
+.fx-k-candle.is-running .fx-k-body {
+  opacity: 0.88;
+  stroke: var(--gold);
+  stroke-width: 1.5;
+}
+
+.fx-k-candle.is-running .fx-k-vol {
+  opacity: 0.5;
+}
+
+.fx-k-candle.is-projected .fx-k-body,
+.fx-k-candle.is-projected .fx-k-wick {
+  opacity: 0.5;
+  stroke-dasharray: 2 1.5;
+}
+
+.fx-k-candle.is-projected .fx-k-vol {
+  opacity: 0.18;
+}
+
+.fx-k-candle.is-active .fx-k-body {
+  filter: brightness(1.22);
+  stroke: var(--text);
+}
+
+.fx-k-ruler {
+  position: relative;
+  min-width: 52px;
+  display: grid;
+  color: var(--muted);
+  font: 0.7rem/1 var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-k-ruler > span {
+  position: relative;
+  top: var(--fx-guide-y);
+  grid-area: 1 / 1;
+  align-self: start;
+  justify-self: end;
+  transform: translateY(-50%);
+}
+
+.fx-k-time-range {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 12px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-inset);
+  color: var(--muted);
+  font: 0.72rem/1.3 var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-k-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  padding: 9px 12px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-k-readout strong,
+.fx-k-readout b {
+  color: var(--text);
+}
+
+.fx-k-chg {
+  font-weight: 700;
+}
+
+.fx-k-status {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 0.69rem;
+  color: var(--muted);
+}
+
+.fx-k-status.is-running {
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+
+.fx-k-quote-meta {
+  color: var(--muted);
+}
+
+.fx-k-zoom {
+  margin-left: auto;
+  color: var(--faint);
+}
+
+.fx-chart-empty {
+  min-height: 250px;
+}
+
+/* ---- FX Order Ticket ---- */
+
+.fx-order-body {
+  display: grid;
+  gap: 12px;
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.fx-price-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-inset);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-price-strip div {
+  display: grid;
+  gap: 2px;
+}
+
+.fx-price-strip span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.fx-price-strip strong {
+  font-family: var(--mono);
+  font-size: 0.92rem;
+}
+
+.fx-cap-bar {
+  display: grid;
+  gap: 5px;
+}
+
+.fx-cap-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-cap-bar progress {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  accent-color: var(--cyan);
+}
+
+.fx-order-sides > button,
+.fx-order-presets > button {
+  flex: 1 1 0;
+}
+
+.fx-order-sides > button {
+  min-height: 36px;
+  font-size: 0.875rem;
+}
+
+.fx-order-sides > button:nth-child(2)[aria-pressed='true'] {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.fx-quantity {
+  display: grid;
+  gap: 5px;
+  font-size: 0.875rem;
+}
+
+.fx-quantity span,
+.fx-estimate div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.fx-quantity small,
+.fx-estimate dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-quantity input {
+  min-width: 0;
+  width: 100%;
+  min-height: 40px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-estimate {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 10px 0;
+  border-block: 1px solid var(--line);
+  font-size: 0.8125rem;
+}
+
+.fx-estimate dd {
+  margin: 0;
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.fx-estimate div:last-child dd {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.fx-order-hint {
+  display: grid;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line));
+  border-radius: 7px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.fx-order-hint p {
+  margin: 0;
+}
+
+.fx-order-body .economy-message {
+  margin: 0;
+}
+
+.fx-receipt {
+  display: grid;
+  gap: 5px;
+}
+
+.fx-receipt span {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 960px) {
+  .fx-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .fx-kpi-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .fx-chart-btn {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .fx-chart-hint {
+    display: none;
+  }
+
+  .economy-panel-heading,
+  .economy-panel-footer,
+  .guild-toolbar {
+    padding-inline: 14px;
+  }
+
+  .economy-message {
+    margin-inline: 14px;
+  }
+
+  .guild-supply-list,
+  .fx-order-body {
+    padding-inline: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .guild-supplies {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guild-filter-pill,
+  .guild-flow-chip,
+  .fx-option {
+    transition: none;
+  }
+}
